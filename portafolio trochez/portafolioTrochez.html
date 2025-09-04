@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Nicolas Trochez</title>
+    
+    <!-- Bootstrap CSS (librerias usadas para darle diseño)-->
+    <!-- Framework de estilos prediseñados (botones, grids, colores, tipografía, etc.) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <!-- Librería de íconos  -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <!-- Fuente personalizada (Poppins) para darle estilo al texto -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+     /* ==================== VARIABLES CSS ==================== */
+    :root {
+        --primary-color: #2563eb;
+        --secondary-color: #1e40af;
+        --accent-color: #3b82f6;
+        --text-dark: #1f2937;
+        --text-light: #6b7280;
+        --bg-light: #f8fafc;
+        --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --success-color: #10b981;
+        --warning-color: #f59e0b;
+    }
+    /* ==================== RESETEO BÁSICO ==================== */
+    * {
+        margin: 0;                  /* Quita márgenes por defecto */
+        padding: 0;                 /* Quita relleno por defecto */
+        box-sizing: border-box;     
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif; /* Define la tipografía base */
+        line-height: 1.6;                    /* Define la altura de línea */
+        color: var(--text-dark); /* Usa una variable CSS para el color principal del texto */
+    }
+
+    /* Scrollbar personalizado */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+        border-radius: 4px;
+    }
+
+    /* ==================== NAVBAR ==================== */
+    .navbar {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: var(--primary-color) !important;
+    }
+
+    .navbar-nav .nav-link {
+        font-weight: 500;
+        color: var(--text-dark) !important;
+        margin: 0 10px;
+    }
+
+    /* ==================== HERO SECTION ==================== */
+    .hero {
+    background: var(--gradient); /* fondo degradado */
+    min-height: 100vh;           /* ocupa toda la altura de la pantalla */
+    display: flex;               /* para centrar el contenido */
+    align-items: center;         /* verticalmente centrado */
+    color: white;
+    position: relative;
+    overflow: hidden;            /* oculta lo que se salga del hero */
+}
+
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        opacity: 0.3;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;         /* se asegura de que el texto quede por encima del fondo */
+    }
+
+    .hero h1 {
+        font-size: 3.5rem;  /* título gigante */
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .hero .lead {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero-image img {
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 50%;     /* redondeado (tipo foto de perfil) */
+        border: 5px solid rgba(255, 255, 255, 0.3);
+    }
+
+    /* ==================== BOTONES ==================== */
+    .btn-primary-custom {
+        background: rgba(255, 255, 255, 0.2);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        padding: 12px 30px;
+        font-weight: 600;
+        border-radius: 50px;
+        text-decoration: none;
+        display: inline-block;
+        backdrop-filter: blur(10px);
+    }
+
+    /* ==================== SECCIONES ==================== */
+    .section {
+        padding: 80px 0;
+    }
+
+    .section-title {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 15px;
+    }
+
+    .section-title p {
+        font-size: 1.1rem;
+        color: var(--text-light);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    /* ==================== ABOUT ==================== */
+    .about-card {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .skill-item {
+        background: var(--bg-light);
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .skill-item i {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        color: var(--primary-color);
+    }
+
+    /* ==================== PROYECTOS ==================== */
+    .project-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+    }
+
+    .project-image {
+        height: 200px;
+        background: var(--gradient);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 3rem;
+        position: relative;
+    }
+
+    .project-image.android {
+        background: linear-gradient(135deg, #a4d65e 0%, #3ddc84 100%);
+    }
+
+    .project-image.web {
+        background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    }
+
+    .project-image.database {
+        background: linear-gradient(135deg, #4834d4 0%, #686de0 100%);
+    }
+
+    .project-content {
+        padding: 30px;
+    }
+
+    .project-card h4 {
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: var(--text-dark);
+    }
+
+    .project-tech {
+        margin: 15px 0;
+    }
+
+    .tech-badge {
+        background: var(--bg-light);
+        color: var(--primary-color);
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        margin-right: 8px;
+        margin-bottom: 8px;
+        display: inline-block;
+    }
+
+    .tech-badge.android {
+        background: rgba(164, 214, 94, 0.2);
+        color: #3ddc84;
+    }
+
+    .tech-badge.web {
+        background: rgba(255, 107, 107, 0.2);
+        color: #ee5a24;
+    }
+
+    .tech-badge.database {
+        background: rgba(72, 52, 212, 0.2);
+        color: #4834d4;
+    }
+
+    /* ==================== EXPERIENCIA ==================== */
+    .experience-item {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+        border-left: 5px solid var(--primary-color);
+    }
+
+    .experience-date {
+        background: var(--primary-color);
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        display: inline-block;
+        margin-bottom: 15px;
+    }
+
+    /* ==================== CONTACTO ==================== */
+    .contact {
+        background: var(--bg-light);
+    }
+
+    .contact-card {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        text-align: center;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-icon {
+        width: 80px;
+        height: 80px;
+        background: var(--gradient);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        color: white;
+        font-size: 2rem;
+    }
+
+    /* ==================== FOOTER ==================== */
+    .footer {
+        background: var(--text-dark);
+        color: white;
+        text-align: center;
+        padding: 40px 0;
+    }
+
+    .social-links a {
+        color: white;
+        font-size: 1.5rem;
+        margin: 0 15px;
+    }
+
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+
+        .hero .lead {
+            font-size: 1.1rem;
+        }
+
+        .hero-image img {
+            width: 250px;
+            height: 250px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+        }
+
+        .about-card,
+        .project-content,
+        .contact-card {
+            padding: 25px;
+        }
+    }
+</style>
+    
+</head>
+<body>
+    <!-- ==================== NAVBAR ==================== -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#inicio">
+                Portafolio Nicolas Trochez
+            </a>
+        </div>
+    </nav>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#inicio">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#acerca">Acerca de</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#proyectos">Proyectos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experiencia">Experiencia</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero banner de inicio de página-->
+    <section id="inicio" class="hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <div class="hero-content">
+                    <h1>Desarrollador de Software</h1>
+                    <p class="lead">Estudiante de Ingeniería en Sistemas apasionado por el desarrollo móvil, web y la gestión de bases de datos. Creando soluciones innovadoras para el mundo digital.</p>
+                    <div class="d-flex gap-3 flex-wrap"></div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="hero-image text-center">
+                     <img src="foto.jpg" alt="Nicolas Trochez" class="img-fluid perfil-foto">
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- ==================== seccion acerca de mi ==================== -->
+    <section id="acerca" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Acerca de Mí</h2>
+                <p>Desarrollador apasionado con experiencia en tecnologías modernas</p>
+            </div>
+            <div class="row">
+                <!-- Tarjeta con información personal -->
+                <div class="col-lg-6">
+                    <div class="about-card">
+                        <h3 class="mb-4">Quien Soy</h3>
+                        <p>Actualmente curso la carrera de Ingeniería en Sistemas en la Corporación Universitaria Unicomfacauca (8vo semestre). Formado por principios éticos y valores, los cuales me permiten un mejor desarrollo personal y social.</p>
+                        <p>Me considero una persona ordenada que cumple con los deberes y solicitudes establecidas, tengo valores tales como el respeto, la responsabilidad, puntualidad, honestidad y trabajo en equipo. Me considero una persona con disposición de escuchar y aprender.</p>
+                        <div class="info-grid mt-4">
+                            <div>
+                            <strong>Email:</strong><br>
+                            nicolastrochez@unicomfacauca.edu.co
+                            </div>
+                            <div>
+                            <strong>Ubicación:</strong><br>
+                            Jamundí, Valle del Cauca
+                            </div>
+                            <div>
+                            <strong>Teléfono:</strong><br>
+                            +57 305 325 8029
+                            </div>
+                            <div>
+                            <strong>Edad:</strong><br>
+                            21 años
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tarjetas de habilidades -->
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="skill-item">
+                                <i class="fab fa-android"></i>
+                                <h5>Desarrollo Móvil</h5>
+                                <p>Android Studio, Java, Kotlin, Activities, Intents</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="skill-item">
+                                <i class="fas fa-code"></i>
+                                <h5>Desarrollo Web</h5>
+                                <p>HTML5, CSS3, Bootstrap, JavaScript, PHP</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="skill-item">
+                                <i class="fas fa-database"></i>
+                                <h5>Bases de Datos</h5>
+                                <p>SQLite, MySQL, Gestión de Datos</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="skill-item">
+                                <i class="fas fa-users"></i>
+                                <h5>Habilidades Blandas</h5>
+                                <p>Trabajo en Equipo, Responsabilidad, Comunicación</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== MIS PROYECTOS ==================== -->
+    <section id="proyectos" class="section" style="background: var(--bg-light);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mis Proyectos</h2>
+                <p>Showcase de mis desarrollos y logros técnicos</p>
+            </div>
+            <div class="row">
+                <!-- Proyecto 1 Fitnav-->
+                <div class="col-lg-6 col-md-6">
+                    <div class="project-card">
+                        <div class="project-image android">
+                            <i class="fab fa-android"></i>
+                        </div>
+                        <div class="project-content">
+                            <h4>Aplicación Móvil FitNav</h4>
+                            <p>Aplicación Android desarrollada en Android Studio para fitness y entrenamiento. Incluye sistema completo de navegación, gestión de WODs y ejercicios Tabata con interfaz intuitiva.</p>
+                            <div class="project-tech">
+                                <span class="tech-badge android">Android Studio</span>
+                                <span class="tech-badge android">Java</span>
+                                <span class="tech-badge android">Activities</span>
+                                <span class="tech-badge android">RecyclerView</span>
+                                <span class="tech-badge android">Intents</span>
+                            </div>
+                            <div class="project-features mt-3">
+                                <h6>Características principales:</h6>
+                                <ul>
+                                    <li><strong>MainActivity:</strong> Interfaz principal con botones de Iniciar Sesión y Registrar</li>
+                                    <li><strong>Panel de Control:</strong> Navegación centralizada a todas las funcionalidades</li>
+                                    <li><strong>WodsActivity:</strong> Lista dinámica de WODs usando RecyclerView</li>
+                                    <li><strong>TabatasActivity:</strong> Gestión de ejercicios Tabata con RecyclerView</li>
+                                    <li><strong>Sistema de Navegación:</strong> Intents para transición fluida entre activities</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Proyecto 2 Xtreme Challenge-->
+                <div class="col-lg-6 col-md-6">
+                    <div class="project-card">
+                        <div class="project-image web">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="project-content">
+                            <h4>Sistema Xtreme Challenge</h4>
+                            <p>Sistema web completo de inscripción y gestión para competencias deportivas. Incluye autenticación de usuarios, gestión de participantes y visualización de datos en tiempo real.</p>
+                            <div class="project-tech">
+                                <span class="tech-badge web">HTML5</span>
+                                <span class="tech-badge web">CSS3</span>
+                                <span class="tech-badge web">JavaScript</span>
+                                <span class="tech-badge web">PHP</span>
+                                <span class="tech-badge database">SQLite</span>
+                            </div>
+                            <div class="project-features mt-3">
+                                <h6>Características principales:</h6>
+                                <ul>
+                                    <li><strong>Sistema de Login:</strong> Página principal con autenticación segura</li>
+                                    <li><strong>Base de Datos:</strong> SQLite (Xtreme Challenge.db) para gestión de datos</li>
+                                    <li><strong>Gestión de Competencias:</strong> Visualización de datos de participantes</li>
+                                    <li><strong>Interfaz Responsiva:</strong> Diseño adaptable a diferentes dispositivos</li>
+                                    <li><strong>Panel Administrativo:</strong> Control total de inscripciones y competencias</li>
+                                </ul>
+                            </div>
+                            <div class="d-flex gap-2 mt-3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Proyecto 3 Xtreme Challenge CrossFit-->
+                <div class="col-lg-6 col-md-6">
+                    <div class="project-card">
+                        <div class="project-image database">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div class="project-content">
+                            <h4>Plataforma Xtreme Challenge CrossFit</h4>
+                            <p>Sistema web avanzado inspirado en BoxPodium para gestión de competencias de CrossFit. Incluye tabulación automática de puntos, rankings en tiempo real y gestión integral de atletas.</p>
+                            <div class="project-tech">
+                                <span class="tech-badge web">HTML5</span>
+                                <span class="tech-badge web">CSS3</span>
+                                <span class="tech-badge web">Bootstrap</span>
+                                <span class="tech-badge web">JavaScript</span>
+                                <span class="tech-badge database">MySQL</span>
+                            </div>
+                            <div class="project-features mt-3">
+                                <h6>Características principales:</h6>
+                                <ul>
+                                    <li><strong>Tabulación Automática:</strong> Cálculo automático de puntos y rankings</li>
+                                    <li><strong>Gestión de Atletas:</strong> Registro y seguimiento completo de participantes</li>
+                                    <li><strong>Dashboard en Tiempo Real:</strong> Visualización instantánea de resultados</li>
+                                    <li><strong>Múltiples Categorías:</strong> Soporte para diferentes divisiones y modalidades</li>
+                                    <li><strong>Reportes Detallados:</strong> Estadísticas completas de competencias</li>
+                                </ul>
+                            </div>
+                            <div class="d-flex gap-2 mt-3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Proyecto 4 Portafolios Profesionales-->
+                <div class="col-lg-6 col-md-6">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="project-content">
+                            <h4>Portafolios Profesionales</h4>
+                            <p>Colección de portafolios profesionales desarrollados con HTML, CSS y Bootstrap. Incluye versiones personalizadas para diferentes mercados y plataformas profesionales.</p>
+                            <div class="project-tech">
+                                <span class="tech-badge">HTML5</span>
+                                <span class="tech-badge">CSS3</span>
+                                <span class="tech-badge">Bootstrap</span>
+                                <span class="tech-badge">Responsive Design</span>
+                            </div>
+                            <div class="project-features mt-3">
+                                <h6>Versiones desarrolladas:</h6>
+                                <ul>
+                                    <li><strong>Versión Internacional:</strong> Portafolio para empresas extranjeras</li>
+                                    <li><strong>Versión GitHub:</strong> Optimizada para desarrolladores</li>
+                                    <li><strong>Versiones Personalizadas:</strong> Adaptadas a diferentes perfiles profesionales</li>
+                                    <li><strong>Diseño Responsivo:</strong> Optimizado para todos los dispositivos</li>
+                                </ul>
+                            </div>
+                            <div class="d-flex gap-2 mt-3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiencia y Educación -->
+    <section id="experiencia" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Experiencia y Educación</h2>
+                <p>Mi trayectoria profesional y logros académicos</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="experience-item">
+                        <span class="experience-date">Actualidad</span>
+                        <h4>Asesor Comercial – Glucloud S.A.S (Actualidad)</h4>
+                        <h6 class="text-primary mb-3">Glucloud S.A.S</h6>
+                        <ul>
+                            <li>Venta y promoción de dispositivos de vapeo y accesorios</li>
+                            <li>Atención personalizada y asesoramiento a clientes</li>
+                            <li>Gestión de inventario y organización del punto de venta</li>
+                            <li>Cumplimiento de metas de ventas y fidelización de clientes</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item">
+                        <span class="experience-date">Experiencia Previa</span>
+                        <h4>Auxiliar de Archivo (Gestión Humana)</h4>
+                        <h6 class="text-primary mb-3">Caribe Supermercados</h6>
+                        <p>Apoyo administrativo en el departamento de recursos humanos, manejo de documentación y archivo.</p>
+                        <ul>
+                            <li>Organización y clasificación de documentos</li>
+                            <li>Atención a empleados y soporte en trámites administrativos</li>
+                            <li>Manejo de sistemas de gestión documental</li>
+                            <li>Colaboración en procesos de selección y contratación</li>
+                        </ul>
+                    </div>
